@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import fetchAsync from './query';
+import Navbar from './components/Navbar';
+import Characters from './components/Characters';
 
 class App extends Component {
   componentDidMount() {
@@ -8,8 +11,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        Hello
+      <div>
+        <Navbar />
+        <Characters />
       </div>
     );
   }
