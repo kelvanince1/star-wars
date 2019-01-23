@@ -1,19 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { Grid } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 
-const Characters = () => (
-  <Grid container justify="space-around" align="center">
-    <Grid item>
-      Luke
-    </Grid>
-    <Grid item>
-      C3-PO
-    </Grid>
-    <Grid item>
-      R2-D2
-    </Grid>
-  </Grid>
-);
+import { fetchCharacters } from '../../store/actions';
 
-export default Characters;
+class Characters extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      characters: [],
+    }
+  }
+
+  handleClick = () => {
+    this.props.fetchCharacters();
+  }
+  render() {
+    const { characters } = this.props;
+
+    return (
+      <Grid container justify="space-around" align="center">
+        {characters.map(ele => {
+          return (
+            <Grid item key={ele.name}>
+              <Typography>{ele.name}</Typography>
+            </Grid>
+          )
+        })}
+        <Grid item>
+          <Button onClick={this.handleClick}>Click</Button>
+        </Grid>
+      </Grid>
+    )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    characters: state.reducer.characters,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCharacters: () => dispatch(fetchCharacters()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Characters);
