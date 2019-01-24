@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Avatar, Button, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { images } from './imageTidier';
-import { fetchCharacters } from '../../store/actions';
+import { images } from './characterImages';
+import { starWarsData } from './characters';
 
 const styles = {
   avatar: {
@@ -31,33 +30,16 @@ const styles = {
   },
 }
 
-class Characters extends Component {
-  constructor(props) {
-    super(props);
+const Characters = props => {
+  const { classes } = props;
+  const characters = starWarsData.characters;
 
-    this.state = {
-      page: 0,
-    }
-  }
-
-  handleClick = () => {
-    this.props.fetchCharacters();
-  }
-
-  getNextCharacterSet = () => {
-    this.setState({
-      page: this.state.page + 1
-    });
-  }
-
-  render() {
-    const { characters, classes } = this.props;
-
-    return (
-      <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
-        <Grid item>
-          <Typography variant="h5" className={classes.buttonTitle}>CHOOSE YOUR CHARACTER</Typography>
-        </Grid>
+  return (
+    <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
+      <Grid item>
+        <Typography variant="h5" className={classes.buttonTitle}>CHOOSE YOUR CHARACTER</Typography>
+      </Grid>
+      <Grid container justify="space-around" spacing={40}>
         {characters.map((ele, index) => {
           return (
             <Grid item key={ele.name}>
@@ -66,7 +48,7 @@ class Characters extends Component {
               >
                 {ele.name}
               </Typography>
-              <Link to={{ pathname: '/character', state: ele }}>
+              <Link to={{ pathname: '/character', ele }}>
                 <Avatar
                   className={classes.avatar}
                   src={images[index]}
@@ -76,37 +58,9 @@ class Characters extends Component {
             </Grid>
           )
         })}
-        <Grid item>
-          <Button
-            onClick={this.handleClick}
-            className={classes.buttonTitle}
-          >
-            Click
-          </Button>
-        </Grid>
-        <Grid item align="center">
-          <Button
-            onClick={this.getNextCharacterSet}
-            className={classes.buttonTitle}
-          >
-            Next Three
-          </Button>
-        </Grid>
       </Grid>
-    )
-  }
+    </Grid>
+  )
 }
 
-const mapStateToProps = state => {
-  return {
-    characters: state.reducer.characters,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchCharacters: () => dispatch(fetchCharacters()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Characters));
+export default (withStyles(styles)(Characters));
