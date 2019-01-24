@@ -4,21 +4,26 @@ import { connect } from 'react-redux';
 import { Avatar, Button, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+import { images } from './imageTidier';
 import { fetchCharacters } from '../../store/actions';
-import C3po from '../../images/c3po.png';
-import Luke from '../../images/luke.png';
-import Leia from '../../images/leia.png';
-import ObiWan from '../../images/obiwan.png';
-import Owen from '../../images/owen.png';
-import R2d2 from '../../images/r2d2.png';
-import R5d4 from '../../images/r5d4.png';
-import Vader from '../../images/vader.png';
 
 const styles = {
   avatar: {
     borderRadius: 0,
-    width: 330,
+    cursor: 'pointer',
     height: 450,
+    width: 330,
+    '&:hover': {
+             outline: '10px solid #FFD700',
+             transition: 'outline 0.6s linear',
+             margin: '0.3em',
+        },
+  },
+  buttonTitle: {
+    color: '#FFD700',
+  },
+  container: {
+    background: 'linear-gradient(to right, #000000, #434343)',
   },
 }
 
@@ -27,35 +32,57 @@ class Characters extends Component {
     super(props);
 
     this.state = {
-      characters: [],
+      indexStart: 0,
+      indexEnd: 3 ,
+      page: 0,
     }
   }
 
   handleClick = () => {
     this.props.fetchCharacters();
   }
+
+  getNextCharacterSet = () => {
+    this.setState({
+      indexStart: this.state.indexStart + 3,
+      indexEnd: this.state.indexEnd + 3,
+      page: this.state.page + 1
+    });
+  }
+
   render() {
     const { characters, classes } = this.props;
+    const { indexStart, indexEnd } = this.state;
 
     return (
-      <Grid container justify="space-around" align="center" spacing={40}>
+      <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
         <Grid item>
-          <Typography variant="primary">CHOOSE YOUR CHARACTER</Typography>
+          <Typography variant="h5" className={classes.buttonTitle}>CHOOSE YOUR CHARACTER</Typography>
         </Grid>
-        {characters.map(ele => {
+        {characters.map((ele, index) => {
           return (
-            <Grid item key={ele.name}>
-              <Typography>{ele.name}</Typography>
+            <Grid container justify="space-around" key={ele.name}>
+              <Grid item>
+                <Avatar className={classes.avatar} src={images[index]} alt={ele.name} />
+              </Grid>
             </Grid>
           )
         })}
-        <Grid container align="center" justify="space-around">
-          <Avatar className={classes.avatar} src={Luke} alt="Luke" />
-          <Avatar className={classes.avatar} src={C3po} alt="C3po" />
-          <Avatar className={classes.avatar} src={R2d2} alt="R2D2" />
-        </Grid>
         <Grid item>
-          <Button onClick={this.handleClick}>Click</Button>
+          <Button
+            onClick={this.handleClick}
+            className={classes.buttonTitle}
+          >
+            Click
+          </Button>
+        </Grid>
+        <Grid item align="center">
+          <Button
+            onClick={this.getNextCharacterSet}
+            className={classes.buttonTitle}
+          >
+            Next Three
+          </Button>
         </Grid>
       </Grid>
     )
