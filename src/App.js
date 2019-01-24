@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 
-import fetchAsync from './query';
+import { Route, Switch } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import Characters from './components/Characters';
+import Character from './components/Character';
 
 class App extends Component {
-  componentDidMount() {
-    fetchAsync();
-  }
-
   render() {
     return (
       <div>
         <Navbar />
-        <Characters />
+        <Switch>
+          <Route path="/" exact component={Characters} />
+          <Route path="/character" exact render={(props) => <Character {...props} />} />
+        </Switch>
       </div>
     );
   }
