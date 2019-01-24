@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { Avatar, Button, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -35,9 +36,6 @@ class Characters extends Component {
     super(props);
 
     this.state = {
-      avatarName: '',
-      indexStart: 0,
-      indexEnd: 3 ,
       page: 0,
     }
   }
@@ -48,15 +46,12 @@ class Characters extends Component {
 
   getNextCharacterSet = () => {
     this.setState({
-      indexStart: this.state.indexStart + 3,
-      indexEnd: this.state.indexEnd + 3,
       page: this.state.page + 1
     });
   }
 
   render() {
     const { characters, classes } = this.props;
-    const { avatarName, indexStart, indexEnd } = this.state;
 
     return (
       <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
@@ -65,17 +60,19 @@ class Characters extends Component {
         </Grid>
         {characters.map((ele, index) => {
           return (
-            <Grid item>
+            <Grid item key={ele.name}>
               <Typography
                 className={classes.characterName}
               >
                 {ele.name}
               </Typography>
-              <Avatar
-                className={classes.avatar}
-                src={images[index]}
-                alt={ele.name}
-              />
+              <Link to={{ pathname: '/character', state: ele }}>
+                <Avatar
+                  className={classes.avatar}
+                  src={images[index]}
+                  alt={ele.name}
+                />
+              </Link>
             </Grid>
           )
         })}
