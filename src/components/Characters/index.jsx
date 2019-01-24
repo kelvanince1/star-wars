@@ -14,12 +14,15 @@ const styles = {
     height: 450,
     width: 330,
     '&:hover': {
-             outline: '10px solid #FFD700',
-             transition: 'outline 0.6s linear',
-             margin: '0.3em',
-        },
+       outline: '10px solid #FFD700',
+       transition: 'outline 0.6s linear',
+       margin: '0.1em',
+    },
   },
   buttonTitle: {
+    color: '#FFD700',
+  },
+  characterName: {
     color: '#FFD700',
   },
   container: {
@@ -32,6 +35,7 @@ class Characters extends Component {
     super(props);
 
     this.state = {
+      avatarName: '',
       indexStart: 0,
       indexEnd: 3 ,
       page: 0,
@@ -52,7 +56,7 @@ class Characters extends Component {
 
   render() {
     const { characters, classes } = this.props;
-    const { indexStart, indexEnd } = this.state;
+    const { avatarName, indexStart, indexEnd } = this.state;
 
     return (
       <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
@@ -61,10 +65,17 @@ class Characters extends Component {
         </Grid>
         {characters.map((ele, index) => {
           return (
-            <Grid container justify="space-around" key={ele.name}>
-              <Grid item>
-                <Avatar className={classes.avatar} src={images[index]} alt={ele.name} />
-              </Grid>
+            <Grid item>
+              <Typography
+                className={classes.characterName}
+              >
+                {ele.name}
+              </Typography>
+              <Avatar
+                className={classes.avatar}
+                src={images[index]}
+                alt={ele.name}
+              />
             </Grid>
           )
         })}
