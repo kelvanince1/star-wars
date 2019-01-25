@@ -1,17 +1,23 @@
+import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
 export const fetchCharacters = url => async dispatch => {
-  const res = await
-  fetch(`${url}`);
-  const response = await res.json();
+  try {
+    const response = await axios
+        .get(`${url}`)
+        .then(res => res.data)
 
-  dispatch({ type: actionTypes.FETCH_CHARACTER, payload: response })
+    dispatch({ type: actionTypes.FETCH_CHARACTER, payload: response });
+  } catch(err) {
+      dispatch({ type: actionTypes.FETCH_CHARACTER_FAILED, message: err.message
+    });
+  }
 }
 
 export const fetchMovies = () => async dispatch => {
-  const res = await
-  fetch('https://swapi.co/api/films/');
-  const response = await res.json();
+  const response = await
+  axios.get('https://swapi.co/api/films/')
+  .then(res => res.data)
 
   dispatch({ type: actionTypes.FETCH_ALL_MOVIES, payload: response })
 }

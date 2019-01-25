@@ -3,6 +3,7 @@ import * as actionTypes from './actionTypes';
 const initialState = {
   characters: [],
   films: [],
+  error: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +11,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_CHARACTER:
       return {
         ...state,
-         characters: action.payload,
+        error: false,
+        characters: action.payload,
+      }
+    case actionTypes.FETCH_CHARACTER_FAILED:
+      return {
+        ...state,
+         error: action.message,
       }
     case actionTypes.FETCH_ALL_MOVIES:
       return {

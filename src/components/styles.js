@@ -20,6 +20,10 @@ export const styles = {
   container: {
     background: 'linear-gradient(to right, #000000, #434343)',
   },
+  errorTitle: {
+    padding: '30px',
+    color: '#FFD700',
+  },
   filmAvatar: {
     borderRadius: 0,
     cursor: 'pointer',
@@ -34,6 +38,7 @@ export const styles = {
   filmContainer: {
     background: 'linear-gradient(to right, #000000, #434343)',
     marginTop: '30px',
+    height: '1000px',
     width: '100%',
   }
 }
