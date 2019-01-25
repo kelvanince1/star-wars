@@ -31,22 +31,35 @@ class Character extends Component {
     }
 
     return (
-      <Grid container style={{ marginTop: '50px' }}>
-        {
-          character.name || <Link to="/"><Typography>Select your character</Typography></Link>
-        }
+      <Grid container className={classes.filmContainer} justify="center" align="center" spacing={40}>
+        <Grid item xs={12}>
+          {
+            character.name ?
+            <Typography className={classes.buttonTitle}>
+              <Link to="/">
+                <Typography className={classes.buttonTitle}>
+                  Select a different character
+                </Typography>
+              </Link>
+              {character.name}s films
+            </Typography> :
+            <Link to="/">
+              <Typography className={classes.buttonTitle}>
+                Select your character
+              </Typography>
+            </Link>
+          }
+        </Grid>
         {filmMap.map(film => {
           if (lastElements.includes(film.id)) {
             return (
-              <Grid container justify="space-around" key={film.title}>
-                <Grid item>
-                  <Typography>{film.title}</Typography>
-                  <Avatar
-                    className={classes.filmAvatar}
-                    src={film.image}
-                    alt={film.title}
-                  />
-                </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography className={classes.buttonTitle}>{film.title}</Typography>
+                <Avatar
+                  className={classes.filmAvatar}
+                  src={film.image}
+                  alt={film.title}
+                />
               </Grid>
             )
           }

@@ -20,7 +20,7 @@ const Characters = props => {
       <Grid container justify="space-around" spacing={40}>
         {characters.map((ele, index) => {
           return (
-            <Grid item key={ele.name}>
+            <Grid item key={ele.name} xs={12} sm={6}>
               <Typography
                 className={classes.characterName}
               >

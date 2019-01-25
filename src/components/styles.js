@@ -15,6 +15,7 @@ export const styles = {
   },
   characterName: {
     color: '#FFD700',
+    padding: '20px',
   },
   container: {
     background: 'linear-gradient(to right, #000000, #434343)',
@@ -29,5 +30,10 @@ export const styles = {
        transition: 'outline 0.6s linear',
        margin: '0.1em',
     },
+  },
+  filmContainer: {
+    background: 'linear-gradient(to right, #000000, #434343)',
+    marginTop: '30px',
+    width: '100%',
   }
 }
