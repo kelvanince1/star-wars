@@ -1,34 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Avatar, Button, Grid, Typography } from '@material-ui/core';
+import { Avatar, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { images } from './characterImages';
 import { starWarsData } from './characters';
-
-const styles = {
-  avatar: {
-    borderRadius: 0,
-    cursor: 'pointer',
-    height: 450,
-    width: 330,
-    '&:hover': {
-       outline: '10px solid #FFD700',
-       transition: 'outline 0.6s linear',
-       margin: '0.1em',
-    },
-  },
-  buttonTitle: {
-    color: '#FFD700',
-  },
-  characterName: {
-    color: '#FFD700',
-  },
-  container: {
-    background: 'linear-gradient(to right, #000000, #434343)',
-  },
-}
+import { styles } from '../styles';
 
 const Characters = props => {
   const { classes } = props;
@@ -50,7 +28,7 @@ const Characters = props => {
               </Typography>
               <Link to={{ pathname: '/character', ele }}>
                 <Avatar
-                  className={classes.avatar}
+                  className={classes.characterAvatar}
                   src={images[index]}
                   alt={ele.name}
                 />
