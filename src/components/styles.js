@@ -37,7 +37,11 @@ export const styles = {
   },
   filmContainer: {
     background: 'linear-gradient(to right, #000000, #434343)',
-    marginTop: '30px',
+    transition: 'opacity 0.5s',
     width: '100%',
   },
+  openingCrawl: {
+    padding: '32px',
+    color: '#FFD700',
+  }
 }
