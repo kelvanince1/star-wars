@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { filmMap } from './filmMap';
 import  { styles } from '../styles';
+import { formatDate } from '../../helperFunctions/dateFormatter';
 import { fetchCharacters, fetchMovies } from '../../store/actions';
 
 class Character extends Component {
@@ -43,14 +44,16 @@ class Character extends Component {
         <Grid item xs={12}>
           {
             character.name && !error ?
-            <Link to="/">
-              <Typography className={classes.buttonTitle}>
-                Select a different character
-              </Typography>
-              <Typography className={classes.buttonTitle}>
+            <div>
+              <Link to="/">
+                <Typography variant="subtitle2" className={classes.buttonTitle}>
+                  Select a different character
+                </Typography>
+              </Link>
+              <Typography variant="subtitle1" className={classes.buttonTitle}>
                 {character.name}s films
               </Typography>
-            </Link>
+            </div>
             :
             <Link to="/">
               <Typography className={classes.buttonTitle}>
@@ -61,17 +64,35 @@ class Character extends Component {
           {errorMessage}
         </Grid>
         {
-          !error ?
+          !error && films.results ?
           filmMap.map(film => {
+          let releaseDate;
+          let openingCrawl;
+
           if (lastElements.includes(film.id)) {
+            for (let ele of films.results) {
+              if (ele.episode_id === film.episodeId) {
+                releaseDate = (
+                  <Typography className={classes.buttonTitle}>
+                    {formatDate(ele.release_date)}
+                  </Typography>
+                )
+                openingCrawl = ele.opening_crawl;
+              }
+            }
             return (
               <Grid item xs={12} sm={6} key={film.title}>
-                <Typography className={classes.buttonTitle}>{film.title}</Typography>
-                <Avatar
-                  className={classes.filmAvatar}
-                  src={film.image}
-                  alt={film.title}
-                />
+                <Typography className={classes.buttonTitle}>
+                  {film.title}
+                </Typography>
+                {releaseDate}
+                <Link to={{ pathname: '/intro', openingCrawl }}>
+                  <Avatar
+                    className={classes.filmAvatar}
+                    src={film.image}
+                    alt={film.title}
+                  />
+                </Link>
               </Grid>
             )
           }
