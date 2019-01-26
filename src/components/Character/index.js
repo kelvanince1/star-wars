@@ -73,7 +73,7 @@ class Character extends Component {
                   <Typography className={classes.buttonTitle}>
                     {film.title}
                   </Typography>
-                  <Link to={{ pathname: '/movie', films, film }}>
+                  <Link to={{ pathname: '/movie', film }}>
                     <Avatar
                       className={classes.filmAvatar}
                       src={film.image}

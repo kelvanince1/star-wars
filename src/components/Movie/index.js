@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slide from 'react-reveal/Slide';
 
@@ -10,7 +11,7 @@ import { formatDate } from '../../helperFunctions/dateFormatter';
 const movie = props => {
   window.scrollTo(0,0);
   console.log('PROPS', props);
-  const { films } = props.location;
+  const { films } = props;
   const { film } = props.location;
   let releaseDate;
   let openingCrawl;
@@ -49,4 +50,10 @@ const movie = props => {
   )
 }
 
-export default movie;
+const mapStateToProps = state => {
+  return {
+    films: state.reducer.films,
+  }
+}
+
+export default connect(mapStateToProps, null)(movie);
