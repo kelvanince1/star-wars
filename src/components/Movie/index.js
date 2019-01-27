@@ -10,47 +10,52 @@ import { formatDate } from '../../helperFunctions/dateFormatter';
 
 const movie = props => {
   window.scrollTo(0,0);
-  const { films } = props;
-  const { film } = props.location;
-  let releaseDate;
-  let openingCrawl;
-  let title;
-
-
-  if (film) {
-    for (let ele of films.results) {
-      if (ele.episode_id === film.episodeId) {
-        releaseDate = formatDate(ele.release_date);
-        openingCrawl = ele.opening_crawl;
-        title  = film.title;
-      }
-    }
-  }
+  const { character, films } = props;
 
   return (
     <div style={styles.container}>
-      <Link to="/">
-        <Typography variant="subtitle2" style={styles.buttonTitle}>
-          Select a characer to get started
-        </Typography>
-      </Link>
-      <Typography style={styles.openingCrawl} variant="h3">
-        {title}
-      </Typography>
-      <Typography style={styles.openingCrawl} variant="h3">
-        {releaseDate}
-      </Typography>
-      <Slide bottom effect="fadeInUp">
-        <Typography style={styles.openingCrawl} variant="h3">
-          {openingCrawl}
-        </Typography>
-      </Slide>
+      {
+        films.title ? (
+          <div>
+            <Link to={{ pathname: '/character', character }}>
+              <Typography variant="subtitle2" style={styles.buttonTitle}>
+                Select a different film
+              </Typography>
+            </Link>
+            <Link to={{ pathname: '/' }}>
+              <Typography variant="subtitle2" style={styles.buttonTitle}>
+                Select a different character
+              </Typography>
+            </Link>
+            <Typography style={styles.openingCrawl} variant="h3">
+              {films.title}
+            </Typography>
+            <Typography style={styles.openingCrawl} variant="h3">
+              {formatDate(films.release_date)}
+            </Typography>
+            <Slide bottom effect="fadeInUp">
+              <Typography style={styles.openingCrawl} variant="h3">
+                {films.opening_crawl}
+              </Typography>
+            </Slide>
+          </div>
+        ) : (
+          <div style={styles.container}>
+            <Link to="/">
+              <Typography variant="subtitle2" style={styles.buttonTitle}>
+                Select a character to get started
+              </Typography>
+            </Link>
+          </div>
+        )
+      }
     </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
+    character: state.reducer.characters,
     films: state.reducer.films,
   }
 }

@@ -16,7 +16,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route path="/character" exact render={(props) => <Character {...props} />} />
-        <Route path="/movie" exact render={(props) => <Movie {...props} />} />
+        <Route path="/movie" component={Movie} />
         <Route path="/" exact component={Characters} />
         <Redirect to="/" />
       </Switch>

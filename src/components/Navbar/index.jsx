@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import {
   AppBar,
   Button,
-  IconButton,
   Toolbar,
-  Typography,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -31,7 +27,14 @@ const Navbar = (props) => {
       <AppBar position="static" color="default">
         <Toolbar>
           <Button color="inherit" className={classes.menuButton}>
-            <a href="https://github.com/kelvanince1/star-wars" target="_blank" style={{ textDecoration: 'none', color: '#000' }}>Github</a>
+            <a
+              href="https://github.com/kelvanince1/star-wars"
+              target="_blank"
+              style={{ textDecoration: 'none', color: '#000' }}
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>
           </Button>
         </Toolbar>
       </AppBar>

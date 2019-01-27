@@ -16,12 +16,11 @@ class Character extends Component {
     if (this.props.location.ele) {
       const { url } = this.props.location.ele;
       this.props.fetchCharacters(url);
-      this.props.fetchMovies();
     }
   }
 
   render() {
-    const { character, classes, error, films } = this.props;
+    const { character, classes, error } = this.props;
     const lastElements = [];
     let errorMessage;
 
@@ -65,7 +64,7 @@ class Character extends Component {
             {errorMessage}
           </Grid>
           {
-            !error && films ?
+            !error ?
             filmMap.map(film => {
             if (lastElements.includes(film.id)) {
               return (
@@ -73,8 +72,9 @@ class Character extends Component {
                   <Typography className={classes.buttonTitle}>
                     {film.title}
                   </Typography>
-                  <Link to={{ pathname: '/movie', film }}>
+                  <Link to="/movie">
                     <Avatar
+                      onClick={() => this.props.fetchMovies(film.id)}
                       className={classes.filmAvatar}
                       src={film.image}
                       alt={film.title}
@@ -95,14 +95,13 @@ const mapStateToProps = state => {
   return {
     character: state.reducer.characters,
     error: state.reducer.error,
-    films: state.reducer.films,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchCharacters: url => dispatch(fetchCharacters(url)),
-    fetchMovies: () => dispatch(fetchMovies()),
+    fetchMovies: id => dispatch(fetchMovies(id)),
   }
 }
 

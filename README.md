@@ -1,69 +1,51 @@
+Desktop screenshots:
+
+![Desktop Home](src/images/Screenshots/desktopHome.png?raw=true "Desktop Home")
+
+![Desktop Characters Films](src/images/Screenshots/charactersFilmsDesktop.png?raw=true "Desktop Characters Films")
+
+![Desktop Film](src/images/Screenshots/filmDesktop.png?raw=true "Desktop Film")
+
+Mobile screenshots:
+
+![Mobile Home](src/images/Screenshots/mobileHome.png?raw=true "Mobile Home")
+
+![Mobile Characters Films](src/images/Screenshots/charactersFilmsMobile.png?raw=true "Mobile Characters Films")
+
+![Mobile Film](src/images/Screenshots/filmMobile.png?raw=true "Mobile Film")
+
+
+Circle CI build:
+
+![Circle CI](src/images/Screenshots/circleCI.png?raw=true "Circle CI Build")
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+FRAMEWORK USED:
 
-### `npm start`
+The App was built in React and can be run using npm run start if you want to run it locally.
+You can run the tests with npm run test.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+TOOLS USED:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* React for components
+* Redux for state management. I used Redux-thunk to handle the asynchronous calls to the Star Wars API.
+* Material-UI for UI component framework. I'm sure you are familiar with Material-UI and its built in Flexbox model. I usually prefer writing my own vanilla CSS, but I like Material-UI's Grid components, which I used quite heavily for this app.
+* The images mostly come from cinemasins.wikia.com
+* I pushed the code to a Github repo and implemented a circle CI integration.
+* I used Jest for testing but also installed the Enzyme package. I like it when there is Redux store in place.
+* The app is hosted on AWS S3.
 
-### `npm test`
+IMPROVEMENTS/NEXT STEPS:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* I strongly considered using GraphQL to implement props for this app. I decided against it since we aren't mutating data at all. Let's say we were building the API as well as the front end for this app, I would want to use GraphQL instead of Redux since the API contains quite a lot of nested data which we could mutate easier with GraphQL.
+* I would automate further deployments using AWS CodeBuild and CodeCommit probably. I would have the S3 buckets contents populated upon successful builds and then, possibly, CloudFront to generate a link between the S3 contents and a Route53 hosted zone, allowing us greater DNS flexibility.
+* I would write a more comprehensive testing model. The tests I have written are straightforward.
+* On the page showing some information on the particular chosen film, I would like the text to scroll up the way it does in the intro to Star Wars films.
+* I would like to switch the screens which contain some sort of application state into a container folder and use the components folder for re-usable components only. For the purposes of this exercise, I thought the current setup is siffient. 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+FINALLY:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# star-wars
+* This was a fun one to build.
