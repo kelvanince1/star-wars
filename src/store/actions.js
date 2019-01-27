@@ -14,9 +14,9 @@ export const fetchCharacters = url => async dispatch => {
   }
 }
 
-export const fetchMovies = () => async dispatch => {
+export const fetchMovies = id => async dispatch => {
   const response = await
-  axios.get('https://swapi.co/api/films/')
+  axios.get(`https://swapi.co/api/films/${id}`)
   .then(res => res.data)
 
   dispatch({ type: actionTypes.FETCH_ALL_MOVIES, payload: response })

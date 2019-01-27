@@ -45,7 +45,7 @@ export const filmMap = [
   },
   {
     title: 'The Force Awakens',
-    id: 4,
+    id: 7,
     episodeId: 7,
     image: forceAwakens,
   },
