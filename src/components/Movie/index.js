@@ -10,7 +10,6 @@ import { formatDate } from '../../helperFunctions/dateFormatter';
 
 const movie = props => {
   window.scrollTo(0,0);
-  console.log('PROPS', props);
   const { films } = props;
   const { film } = props.location;
   let releaseDate;
