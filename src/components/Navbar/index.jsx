@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import {
   AppBar,
@@ -16,9 +17,6 @@ const styles = {
     flexGrow: 1,
     color: 'white',
   },
-  grow: {
-    flexGrow: 1,
-  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -32,13 +30,9 @@ const Navbar = (props) => {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Home
-          </Typography>
-          <Button color="inherit">Github</Button>
+          <Button color="inherit" className={classes.menuButton}>
+            <a href="https://github.com/kelvanince1/star-wars" target="_blank" style={{ textDecoration: 'none', color: '#000' }}>Github</a>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

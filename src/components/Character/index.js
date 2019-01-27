@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Fade from 'react-reveal/Fade';
 
 import { Avatar, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { filmMap } from './filmMap';
 import  { styles } from '../styles';
-import { formatDate } from '../../helperFunctions/dateFormatter';
 import { fetchCharacters, fetchMovies } from '../../store/actions';
 
 class Character extends Component {
   componentDidMount() {
+    window.scrollTo(0,0);
     if (this.props.location.ele) {
       const { url } = this.props.location.ele;
       this.props.fetchCharacters(url);
@@ -25,7 +26,6 @@ class Character extends Component {
     let errorMessage;
 
     if (error) {
-      console.log('ERROR', error);
       errorMessage = (
         <Typography variant="h4" className={classes.errorTitle}>We cannot find the data for this character. Try another</Typography>
       )
@@ -40,66 +40,53 @@ class Character extends Component {
     }
 
     return (
-      <Grid container className={classes.filmContainer} justify="center" align="center" spacing={40}>
-        <Grid item xs={12}>
-          {
-            character.name && !error ?
-            <div>
+      <Fade left>
+        <Grid container className={classes.container} justify="center" align="center" spacing={40}>
+          <Grid item xs={12}>
+            {
+              character.name && !error ?
+              <div>
+                <Link to="/">
+                  <Typography variant="subtitle2" className={classes.buttonTitle}>
+                    Select a different character
+                  </Typography>
+                </Link>
+                <Typography variant="subtitle1" className={classes.buttonTitle}>
+                  {character.name}s films
+                </Typography>
+              </div>
+              :
               <Link to="/">
-                <Typography variant="subtitle2" className={classes.buttonTitle}>
-                  Select a different character
+                <Typography className={classes.buttonTitle}>
+                  Select your character
                 </Typography>
               </Link>
-              <Typography variant="subtitle1" className={classes.buttonTitle}>
-                {character.name}s films
-              </Typography>
-            </div>
-            :
-            <Link to="/">
-              <Typography className={classes.buttonTitle}>
-                Select your character
-              </Typography>
-            </Link>
-          }
-          {errorMessage}
-        </Grid>
-        {
-          !error && films.results ?
-          filmMap.map(film => {
-          let releaseDate;
-          let openingCrawl;
-
-          if (lastElements.includes(film.id)) {
-            for (let ele of films.results) {
-              if (ele.episode_id === film.episodeId) {
-                releaseDate = (
-                  <Typography className={classes.buttonTitle}>
-                    {formatDate(ele.release_date)}
-                  </Typography>
-                )
-                openingCrawl = ele.opening_crawl;
-              }
             }
-            return (
-              <Grid item xs={12} sm={6} key={film.title}>
-                <Typography className={classes.buttonTitle}>
-                  {film.title}
-                </Typography>
-                {releaseDate}
-                <Link to={{ pathname: '/intro', openingCrawl }}>
-                  <Avatar
-                    className={classes.filmAvatar}
-                    src={film.image}
-                    alt={film.title}
-                  />
-                </Link>
-              </Grid>
-            )
+            {errorMessage}
+          </Grid>
+          {
+            !error && films ?
+            filmMap.map(film => {
+            if (lastElements.includes(film.id)) {
+              return (
+                <Grid item xs={12} sm={6} key={film.title}>
+                  <Typography className={classes.buttonTitle}>
+                    {film.title}
+                  </Typography>
+                  <Link to={{ pathname: '/movie', film }}>
+                    <Avatar
+                      className={classes.filmAvatar}
+                      src={film.image}
+                      alt={film.title}
+                    />
+                  </Link>
+                </Grid>
+              )
+            }})
+            : null
           }
-        })
-        : null
-      }
-      </Grid>
+        </Grid>
+      </Fade>
     );
   }
 }
