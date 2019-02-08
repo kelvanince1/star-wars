@@ -8,11 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import Characters from './components/Characters';
 import Character from './components/Character';
 import Movie from './components/Movie';
-import Navbar from './components/Navbar';
 
 ReactDOM.render(
   <App>
-    <Navbar />
     <BrowserRouter>
       <Switch>
         <Route path="/character" exact render={(props) => <Character {...props} />} />
