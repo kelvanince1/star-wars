@@ -33,8 +33,8 @@ TOOLS USED:
 * Redux for state management. I used Redux-thunk to handle the asynchronous calls to the Star Wars API.
 * Material-UI for UI component framework. I'm sure you are familiar with Material-UI and its built in Flexbox model. I usually prefer writing my own vanilla CSS, but I like Material-UI's Grid components, which I used quite heavily for this app.
 * The images mostly come from cinemasins.wikia.com
-* I pushed the code to a Github repo and implemented a circle CI integration. I was using a develop branch and merging to master. I know this isn't really necessary since I was the only collaborator. It's more of a habit at this stage. 
-* I used Jest for testing but also installed the Enzyme package. I like it when there is Redux store in place.
+* I pushed the code to a Github repo and implemented a circle CI integration. I was using a develop branch and merging to master. I know this isn't really necessary since I was the only collaborator. It's more of a habit at this stage.
+* I used Jest for testing but also installed the Enzyme package. I like it for when there is Redux store in place.
 * The app is hosted on AWS S3 at URL:
       - http://kelvansstarwars.com.s3-website-us-east-1.amazonaws.com/
 

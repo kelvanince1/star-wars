@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import './index.css';
-import Root from './Root';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Navbar from './components/Navbar';
 import Characters from './components/Characters';
 import Character from './components/Character';
 import Movie from './components/Movie';
+import Navbar from './components/Navbar';
 
 ReactDOM.render(
-  <Root>
+  <App>
     <Navbar />
     <BrowserRouter>
       <Switch>
@@ -21,7 +21,7 @@ ReactDOM.render(
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
-  </Root>,
+  </App>,
   document.getElementById('root')
 );
 

@@ -7,8 +7,25 @@ import { Avatar, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { filmMap } from './filmMap';
-import  { styles } from '../styles';
 import { fetchCharacters, fetchMovies } from '../../store/actions';
+
+const styles = theme => ({
+  errorTitle: {
+    padding: theme.spacing.unit * 4,
+    color: theme.palette.primary.main,
+  },
+  filmAvatar: {
+    borderRadius: 0,
+    cursor: 'pointer',
+    height: 420,
+    width: 300,
+    '&:hover': {
+       outline: `10px solid ${theme.palette.primary.main}`,
+       transition: 'outline 0.6s linear',
+       margin: '0.1em',
+    },
+  },
+});
 
 class Character extends Component {
   componentDidMount() {
@@ -26,7 +43,9 @@ class Character extends Component {
 
     if (error) {
       errorMessage = (
-        <Typography variant="h4" className={classes.errorTitle}>We cannot find the data for this character. Try another</Typography>
+        <Typography variant="h4" className={classes.errorTitle}>
+          We cannot find the data for this character. Try another
+        </Typography>
       )
     }
 
@@ -45,18 +64,25 @@ class Character extends Component {
             {
               character.name && !error ?
               <div>
+                <Typography variant="h5" color="primary">
+                  CHOOSE A FILM TO SEE SOME COOL DETAILS
+                </Typography>
                 <Link to="/">
-                  <Typography variant="subtitle2" className={classes.buttonTitle}>
+                  <Typography
+                    variant="subtitle2"
+                    gutterBottom
+                    color="primary"
+                  >
                     Select a different character
                   </Typography>
                 </Link>
-                <Typography variant="subtitle1" className={classes.buttonTitle}>
+                <Typography variant="subtitle1" color="primary">
                   {character.name}s films
                 </Typography>
               </div>
               :
               <Link to="/">
-                <Typography className={classes.buttonTitle}>
+                <Typography color="primary">
                   Select your character
                 </Typography>
               </Link>
@@ -69,7 +95,7 @@ class Character extends Component {
             if (lastElements.includes(film.id)) {
               return (
                 <Grid item xs={12} sm={6} key={film.title}>
-                  <Typography className={classes.buttonTitle}>
+                  <Typography color="primary">
                     {film.title}
                   </Typography>
                   <Link to="/movie">
