@@ -23,6 +23,9 @@ const styles = () => ({
 });
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     primary: {
       main: '#FFD700',
@@ -35,11 +38,11 @@ const App = (props) => {
   const { classes } = props;
   return (
     <Provider store={store}>
-      <div className={classes.container}>
-        <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>
+        <div className={classes.container}>
           {props.children}
-        </MuiThemeProvider>
-      </div>
+        </div>
+      </MuiThemeProvider>
     </Provider>
   )
 }
