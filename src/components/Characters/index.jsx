@@ -6,7 +6,24 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { images } from './characterImages';
 import { starWarsData } from './characters';
-import { styles } from '../styles';
+
+const styles = theme => ({
+  characterAvatar: {
+    borderRadius: 0,
+    cursor: 'pointer',
+    height: 450,
+    width: 330,
+    '&:hover': {
+       outline: `10px solid ${theme.palette.primary.main}`,
+       transition: 'outline 0.6s linear',
+       margin: '0.1em',
+    },
+  },
+  characterName: {
+    color: theme.palette.primary.main,
+    padding: theme.spacing.unit * 2.5,
+  },
+});
 
 const Characters = props => {
   const { classes } = props;
@@ -15,7 +32,9 @@ const Characters = props => {
   return (
     <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
       <Grid item>
-        <Typography variant="h5" className={classes.buttonTitle}>CHOOSE YOUR CHARACTER</Typography>
+        <Typography variant="h5" color="primary">
+          CHOOSE YOUR CHARACTER
+        </Typography>
       </Grid>
       <Grid container justify="space-around" spacing={40}>
         {characters.map((ele, index) => {

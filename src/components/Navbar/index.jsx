@@ -8,20 +8,19 @@ import {
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
     color: 'white',
+    paddingBottom: '40px',
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+    marginRight: theme.spacing.unit * 2.5,
   },
-};
+});
 
 const Navbar = (props) => {
   const { classes } = props;
-
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
