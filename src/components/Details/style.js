@@ -16,13 +16,19 @@ export const styles = theme => ({
     width: '300px',
     border: '2px solid #828282',
     margin: 'auto',
-    padding: '5px',
+    padding: '10px',
   },
   elementInner: {
     border: '2px solid #828282',
     position: 'relative',
     padding: '0px 20px',
     transition: 'all 500ms ease',
+  },
+  filmAvatar: {
+    borderRadius: 0,
+    border: '2px solid #828282',
+    height: 450,
+    width: 350,
   },
   squareElement: {
     width: '100px',

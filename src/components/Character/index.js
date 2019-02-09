@@ -57,6 +57,7 @@ class Character extends Component {
         ele.pop();
         lastElements.push(JSON.parse(ele.pop()));
       }
+      lastElements.sort();
     }
 
     return (
@@ -72,6 +73,8 @@ class Character extends Component {
               <Grid item xs={12}>
                 <Details
                   character={character}
+                  characterFilms={lastElements}
+                  error={error}
                 />
               </Grid>
             </Grid>
@@ -107,28 +110,6 @@ class Character extends Component {
             }
             {errorMessage}
           </Grid>
-          {
-            !error ?
-            filmMap.map(film => {
-            if (lastElements.includes(film.id)) {
-              return (
-                <Grid item xs={12} sm={6} key={film.title}>
-                  <Typography color="primary">
-                    {film.title}
-                  </Typography>
-                  <Link to="/movie">
-                    <Avatar
-                      onClick={() => this.props.fetchMovies(film.id)}
-                      className={classes.filmAvatar}
-                      src={film.image}
-                      alt={film.title}
-                    />
-                  </Link>
-                </Grid>
-              )
-            }})
-            : null
-          }
         </Grid>
       </Fade>
     );
