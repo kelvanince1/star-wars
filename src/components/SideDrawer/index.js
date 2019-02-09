@@ -7,7 +7,7 @@ const SideDrawer = props => {
 
   return (
     <Drawer
-      anchor="right"
+      anchor="left"
       open={open}
       onClose={() => onClose(false)}
     >
