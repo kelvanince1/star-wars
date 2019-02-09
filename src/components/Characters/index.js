@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Avatar, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { images } from './characterImages';
 import { starWarsData } from './characters';
 
 const styles = theme => ({
   characterAvatar: {
     borderRadius: 0,
     cursor: 'pointer',
-    height: 450,
-    width: 330,
+    height: '100%',
+    width: '100%',
     '&:hover': {
        outline: `10px solid ${theme.palette.primary.main}`,
        transition: 'outline 0.6s linear',
@@ -21,6 +20,7 @@ const styles = theme => ({
   },
   characterName: {
     color: theme.palette.primary.main,
+    fontFamily: 'Kalam',
     padding: theme.spacing.unit * 2.5,
   },
 });
@@ -30,32 +30,34 @@ const Characters = props => {
   const characters = starWarsData.characters;
 
   return (
-    <Grid container justify="space-around" align="center" spacing={40} className={classes.container}>
+    <Grid container direction="column" justify="space-around" align="center" spacing={40}>
       <Grid item>
-        <Typography variant="h5" color="primary">
+        <Typography
+          className={classes.characterName}
+          variant="h3"
+          color="primary"
+        >
           CHOOSE YOUR CHARACTER
         </Typography>
       </Grid>
-      <Grid container justify="space-around" spacing={40}>
-        {characters.map((ele, index) => {
-          return (
-            <Grid item key={ele.name} xs={12} sm={6}>
+      {characters.map((ele, index) => {
+        return (
+          <Grid item key={ele.name} xs={12} sm={6}>
+            <Link
+              to={{ pathname: '/character', ele }}
+              style={{ textDecoration: 'none' }}
+            >
               <Typography
                 className={classes.characterName}
+                variant="h6"
+                color="primary"
               >
                 {ele.name}
               </Typography>
-              <Link to={{ pathname: '/character', ele }}>
-                <Avatar
-                  className={classes.characterAvatar}
-                  src={images[index]}
-                  alt={ele.name}
-                />
-              </Link>
-            </Grid>
-          )
-        })}
-      </Grid>
+            </Link>
+          </Grid>
+        )
+      })}
     </Grid>
   )
 }

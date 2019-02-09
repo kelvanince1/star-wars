@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
+import Navbar from './components/Navbar';
 import reducer from './store/reducers';
 
 const rootReducer = combineReducers({
@@ -19,6 +20,8 @@ const store = createStore(
 const styles = () => ({
   container: {
     background: 'linear-gradient(to right, #000000, #434343)',
+    height: `${window.innerHeight}px`,
+    paddingTop: '90px',
   },
 });
 
@@ -29,6 +32,9 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#FFD700',
+    },
+    secondary: {
+      main: '#000000',
     }
   },
   spacing: 8,
@@ -39,6 +45,7 @@ const App = (props) => {
   return (
     <Provider store={store}>
       <MuiThemeProvider theme={theme}>
+        <Navbar />
         <div className={classes.container}>
           {props.children}
         </div>

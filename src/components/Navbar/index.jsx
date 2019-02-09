@@ -1,48 +1,85 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
   AppBar,
-  Button,
+  IconButton,
   Toolbar,
 } from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
+import SideDrawer from '../SideDrawer';
+
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    color: 'white',
-    paddingBottom: '40px',
+  bar: {
+    fontFamily: 'Staatliches',
+    fontSize: theme.spacing.unit * 4,
+    padding: '12px 0',
   },
   menuButton: {
     marginRight: theme.spacing.unit * 2.5,
   },
 });
 
-const Navbar = (props) => {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
+class Navbar extends Component {
+  state = {
+    headerTrans: false,
+    open: false,
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    if (window.scrollY > 0) {
+      this.setState({
+        headerTrans: true
+      })
+    } else {
+      this.setState({
+        headerTrans: false
+      })
+    }
+  }
+
+  toggleDrawer = val => {
+    this.setState({
+      open: val
+    })
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { headerTrans, open } = this.state;
+
+    return (
+      <AppBar
+        position="fixed"
+        color={headerTrans ? 'secondary' : 'primary'}
+        className={classes.bar}
+      >
         <Toolbar>
-          <Button color="inherit" className={classes.menuButton}>
-            <a
-              href="https://github.com/kelvanince1/star-wars"
-              target="_blank"
-              style={{ textDecoration: 'none', color: '#000' }}
-              rel="noopener noreferrer"
-            >
-              Github
-            </a>
-          </Button>
+          <div>Star Wars</div>
+          <IconButton
+            color={headerTrans ? 'primary' : 'secondary'}
+            onClick={() => this.toggleDrawer(true)}
+          >
+            <Menu />
+          </IconButton>
+          <SideDrawer
+            open={open}
+            onClose={val => this.toggleDrawer(val)}
+          />
         </Toolbar>
       </AppBar>
-    </div>
-  );
+    );
+  }
 }
 
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Navbar);
+export default (withStyles(styles)(Navbar));
