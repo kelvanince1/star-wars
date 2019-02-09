@@ -18,7 +18,7 @@ const styles = theme => ({
     top: '50%',
     left: '50%',
     width: '400px',
-    height: '275px',
+    height: '295px',
     transform: 'translate(-50%, -50%)',
     border: '2px solid white',
   },
@@ -40,7 +40,11 @@ const Background = props => {
         </Grid>
         <Grid item className={classes.innerText}>
           Check out their films below
-          <ArrowDropDownCircle />
+        </Grid>
+        <Grid item className={classes.innerText}>
+          <ArrowDropDownCircle
+            size="large"
+          />
         </Grid>
       </Grid>
     </div>

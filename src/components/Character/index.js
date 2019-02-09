@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { filmMap } from './filmMap';
 import Background from '../Background';
+import Details from '../Details';
 import { fetchCharacters, fetchMovies } from '../../store/actions';
 
 const styles = theme => ({
@@ -60,12 +61,19 @@ class Character extends Component {
 
     return (
       <Fade left>
-        <Grid container className={classes.container} justify="center" align="center" spacing={40}>
+        <Grid container justify="center" align="center">
           {character.name ?
-            <Grid item xs={12}>
-              <Background
-                character={character}
-              />
+            <Grid container justify="center" align="center">
+              <Grid item xs={12}>
+                <Background
+                  character={character}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Details
+                  character={character}
+                />
+              </Grid>
             </Grid>
             :
             null
