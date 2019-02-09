@@ -7,6 +7,7 @@ import { Avatar, Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { filmMap } from './filmMap';
+import Background from '../Background';
 import { fetchCharacters, fetchMovies } from '../../store/actions';
 
 const styles = theme => ({
@@ -60,6 +61,15 @@ class Character extends Component {
     return (
       <Fade left>
         <Grid container className={classes.container} justify="center" align="center" spacing={40}>
+          {character.name ?
+            <Grid item xs={12}>
+              <Background
+                character={character}
+              />
+            </Grid>
+            :
+            null
+          }
           <Grid item xs={12}>
             {
               character.name && !error ?

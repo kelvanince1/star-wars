@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Avatar, Grid, Typography } from '@material-ui/core';
-import {ArrowBack, ArrowForward } from '@material-ui/icons';
+import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { images } from './characterImages';
 import { starWarsData } from './characters';
 
 const styles = theme => ({
-  arrows: {
-    marginTop: theme.spacing.unit * 8,
-  },
   characterAvatar: {
     borderRadius: 0,
     cursor: 'pointer',
-    height: 450,
-    width: 330,
+    height: '100%',
+    width: '100%',
     '&:hover': {
        outline: `10px solid ${theme.palette.primary.main}`,
        transition: 'outline 0.6s linear',
@@ -25,60 +20,46 @@ const styles = theme => ({
   },
   characterName: {
     color: theme.palette.primary.main,
+    fontFamily: 'Kalam',
     padding: theme.spacing.unit * 2.5,
   },
 });
 
-class Characters extends Component {
-  state = {
-    counter: 0,
-  }
-  render() {
-    const { classes } = this.props;
-    const { counter } = this.state;
-    const characters = starWarsData.characters;
+const Characters = props => {
+  const { classes } = props;
+  const characters = starWarsData.characters;
 
-    return (
-      <Grid container justify="center">
-        <Grid item>
-          <Typography variant="h5" color="primary">
-            CHOOSE YOUR CHARACTER
-          </Typography>
-        </Grid>
-        <Grid container justify="center" align="center">
-          <Grid item key={counter} xs={12} sm={6}>
-            <Typography
-              className={classes.characterName}
+  return (
+    <Grid container direction="column" justify="space-around" align="center" spacing={40}>
+      <Grid item>
+        <Typography
+          className={classes.characterName}
+          variant="h3"
+          color="primary"
+        >
+          CHOOSE YOUR CHARACTER
+        </Typography>
+      </Grid>
+      {characters.map((ele, index) => {
+        return (
+          <Grid item key={ele.name} xs={12} sm={6}>
+            <Link
+              to={{ pathname: '/character', ele }}
+              style={{ textDecoration: 'none' }}
             >
-              {characters[counter].name}
-            </Typography>
-            <Link to={{ pathname: '/character' }}>
-              <Avatar
-                className={classes.characterAvatar}
-                src={images[counter]}
-                alt={characters[counter].name}
-              />
+              <Typography
+                className={classes.characterName}
+                variant="h6"
+                color="primary"
+              >
+                {ele.name}
+              </Typography>
             </Link>
           </Grid>
-          <Grid item xs={6}>
-            <ArrowForward
-              className={classes.arrows}
-              onClick={() => {
-                  if (this.state.counter === 3) {
-                    return this.setState({ counter: 0 })
-                  }
-
-                  this.setState(prevState => {
-                     return {counter: prevState.counter + 1}
-                  })
-              }}
-              color="primary"
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-    )
-  }
+        )
+      })}
+    </Grid>
+  )
 }
 
 export default (withStyles(styles)(Characters));

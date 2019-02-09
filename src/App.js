@@ -20,8 +20,8 @@ const store = createStore(
 const styles = () => ({
   container: {
     background: 'linear-gradient(to right, #000000, #434343)',
-    minHeight: '1000px',
-    paddingTop: '40px',
+    height: `${window.innerHeight}px`,
+    paddingTop: '90px',
   },
 });
 

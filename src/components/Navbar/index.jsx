@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import {
   AppBar,
-  Button,
   IconButton,
   Toolbar,
 } from '@material-ui/core';
@@ -62,13 +61,13 @@ class Navbar extends Component {
     return (
       <AppBar
         position="fixed"
-        color={headerTrans ? 'primary' : 'secondary'}
+        color={headerTrans ? 'secondary' : 'primary'}
         className={classes.bar}
       >
         <Toolbar>
           <div>Star Wars</div>
           <IconButton
-            color={headerTrans ? 'secondary' : 'primary'}
+            color={headerTrans ? 'primary' : 'secondary'}
             onClick={() => this.toggleDrawer(true)}
           >
             <Menu />
@@ -87,4 +86,4 @@ Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Navbar);
+export default (withStyles(styles)(Navbar));
