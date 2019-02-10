@@ -11,12 +11,33 @@ import { styles } from './style';
 import { formatDate } from '../../helperFunctions/dateFormatter';
 
 class Details extends Component {
+  state = {
+    counter: 1
+  }
   componentDidMount() {
     const { characterFilms } = this.props;
-    this.props.fetchMovies(characterFilms[0])
+    this.props.fetchMovies(characterFilms[0]);
   }
+
+  handleNext = () => {
+    const { characterFilms } = this.props;
+    const { counter } = this.state;
+    this.props.fetchMovies(characterFilms[counter]);
+
+    if (counter === characterFilms.length -1) {
+      return this.setState({
+        counter: 0
+      });
+    }
+
+    this.setState({
+      counter: counter + 1
+    });
+  }
+
   render() {
     const { character, classes, error, characterFilms, films } = this.props;
+
     return (
       <Grid>
         <Grid item className={classes.cental}>
@@ -72,6 +93,13 @@ class Details extends Component {
                     )
                   }
                 })}
+                <Typography
+                  color="primary"
+                  onClick={() => this.handleNext()}
+                  className={classes.helperText}
+                >
+                  NEXT FILM <ArrowRight />
+                </Typography>
             </Grid>
           </Grid>
         </Grid>

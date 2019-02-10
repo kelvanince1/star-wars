@@ -30,14 +30,12 @@ export const styles = theme => ({
     height: 450,
     width: 350,
   },
-  squareElement: {
-    width: '100px',
-    height: '100px',
-    position: 'absolute',
-    transform: 'rotate(45deg)',
-    background: theme.palette.primary.main,
-    top: '-54px',
-    left: '100px',
+  helperText: {
+    cursor: 'pointer',
+    fontFamily: 'Kalam',
+    fontSize: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 6,
+    paddingBottom: theme.spacing.unit,
   },
   iconElement: {
     width: '50px',
@@ -54,5 +52,14 @@ export const styles = theme => ({
     margin: '90px 0px 20px 0px',
     borderBottom: '1px solid #5d5d5d',
     paddingBottom: theme.spacing.unit,
+  },
+  squareElement: {
+    width: '100px',
+    height: '100px',
+    position: 'absolute',
+    transform: 'rotate(45deg)',
+    background: theme.palette.primary.main,
+    top: '-54px',
+    left: '100px',
   },
 });

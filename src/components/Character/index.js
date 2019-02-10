@@ -3,29 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 
-import { Avatar, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { filmMap } from './filmMap';
 import Background from '../Background';
 import Details from '../Details';
-import { fetchCharacters, fetchMovies } from '../../store/actions';
+import { fetchCharacters } from '../../store/actions';
 
 const styles = theme => ({
   errorTitle: {
     padding: theme.spacing.unit * 4,
     color: theme.palette.primary.main,
-  },
-  filmAvatar: {
-    borderRadius: 0,
-    cursor: 'pointer',
-    height: 420,
-    width: 300,
-    '&:hover': {
-       outline: `10px solid ${theme.palette.primary.main}`,
-       transition: 'outline 0.6s linear',
-       margin: '0.1em',
-    },
   },
 });
 
@@ -63,7 +51,7 @@ class Character extends Component {
     return (
       <Fade left>
         <Grid container justify="center" align="center">
-          {character.name ?
+          {character.name && !error ?
             <Grid container justify="center" align="center">
               <Grid item xs={12}>
                 <Background
@@ -126,7 +114,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCharacters: url => dispatch(fetchCharacters(url)),
-    fetchMovies: id => dispatch(fetchMovies(id)),
   }
 }
 
