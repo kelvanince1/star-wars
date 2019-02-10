@@ -1,11 +1,10 @@
 export const styles = theme => ({
   central: {
-    width: '900px',
+    width: '100%',
     margin: '0 auto',
   },
   outerWrapper: {
-    display: 'flex',
-    padding: '100px 0px',
+    padding: '75px 0px',
   },
   element: {
     width: '50%',
@@ -27,14 +26,14 @@ export const styles = theme => ({
   filmAvatar: {
     borderRadius: 0,
     border: '2px solid #828282',
-    height: 450,
+    height: 550,
     width: 350,
   },
   nextButtonText: {
     cursor: 'pointer',
     fontFamily: 'Kalam',
     fontSize: theme.spacing.unit * 4,
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
   },
   iconElement: {
@@ -51,7 +50,6 @@ export const styles = theme => ({
     fontSize: theme.spacing.unit * 4,
     margin: '90px 0px 20px 0px',
     borderBottom: '1px solid #5d5d5d',
-    paddingBottom: theme.spacing.unit,
   },
   linkText: {
     fontFamily: 'Abril Fatface',
@@ -59,11 +57,12 @@ export const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
   },
   openingCrawl: {
-    fontFamily: 'Kalam',
+    fontFamily: 'Nanum Gothic',
     fontSize: theme.spacing.unit * 4,
-    margin: '90px 0px 20px 0px',
     borderBottom: '1px solid #5d5d5d',
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 12,
+    paddingRight: theme.spacing.unit * 12,
   },
   squareElement: {
     width: '100px',

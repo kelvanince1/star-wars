@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Avatar, Grid, Typography } from '@material-ui/core';
-import { ArrowRight, InfoOutlined } from '@material-ui/icons';
+import { ArrowRight, InfoOutlined, PersonOutlineRounded } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import { fetchMovies } from '../../store/actions';
@@ -49,11 +49,19 @@ class Details extends Component {
                 color="primary"
               >
                 Click here to select another character
+                <PersonOutlineRounded
+                  style={{ verticalAlign: 'bottom' }}
+                />
               </Typography>
             </Link>
           </Grid>
-          <Grid item className={classes.outerWrapper}>
-            <Grid item className={classes.element}>
+          <Grid
+            container
+            justify="center"
+            align="center"
+            className={classes.outerWrapper}
+          >
+            <Grid item xs={12} sm={6} className={classes.element}>
               <Grid item className={classes.elementChild}>
                 <Grid item className={classes.elementInner}>
                   <Grid item className={classes.squareElement}></Grid>
@@ -81,13 +89,14 @@ class Details extends Component {
                 </Grid>
               </Grid>
               <Typography
-                className={classes.openingCrawl}
                 color="primary"
+                onClick={() => this.handleNext()}
+                className={classes.nextButtonText}
               >
-                  {films.opening_crawl}
+                NEXT FILM <ArrowRight />
               </Typography>
             </Grid>
-            <Grid item className={classes.element}>
+            <Grid item xs={12} sm={6} className={classes.element}>
               {filmMap.map(film => {
                 if (films.title === film.title) {
                   return (
@@ -100,14 +109,15 @@ class Details extends Component {
                   )
                 }
               })}
-              <Typography
-                color="primary"
-                onClick={() => this.handleNext()}
-                className={classes.nextButtonText}
-              >
-                NEXT FILM <ArrowRight />
-              </Typography>
             </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              className={classes.openingCrawl}
+              color="primary"
+            >
+                {films.opening_crawl}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
