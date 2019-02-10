@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import reducer from './store/reducers';
 
 const rootReducer = combineReducers({
@@ -49,6 +50,7 @@ const App = (props) => {
         <div className={classes.container}>
           {props.children}
         </div>
+        <Footer />
       </MuiThemeProvider>
     </Provider>
   )
