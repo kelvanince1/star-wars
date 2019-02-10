@@ -3,28 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 
-import { Avatar, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { filmMap } from './filmMap';
 import Background from '../Background';
-import { fetchCharacters, fetchMovies } from '../../store/actions';
+import Details from '../Details';
+import { fetchCharacters } from '../../store/actions';
 
 const styles = theme => ({
   errorTitle: {
     padding: theme.spacing.unit * 4,
     color: theme.palette.primary.main,
-  },
-  filmAvatar: {
-    borderRadius: 0,
-    cursor: 'pointer',
-    height: 420,
-    width: 300,
-    '&:hover': {
-       outline: `10px solid ${theme.palette.primary.main}`,
-       transition: 'outline 0.6s linear',
-       margin: '0.1em',
-    },
   },
 });
 
@@ -56,16 +45,26 @@ class Character extends Component {
         ele.pop();
         lastElements.push(JSON.parse(ele.pop()));
       }
+      lastElements.sort();
     }
 
     return (
       <Fade left>
-        <Grid container className={classes.container} justify="center" align="center" spacing={40}>
-          {character.name ?
-            <Grid item xs={12}>
-              <Background
-                character={character}
-              />
+        <Grid container justify="center" align="center">
+          {character.name && !error ?
+            <Grid container justify="center" align="center">
+              <Grid item xs={12}>
+                <Background
+                  character={character}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Details
+                  character={character}
+                  characterFilms={lastElements}
+                  error={error}
+                />
+              </Grid>
             </Grid>
             :
             null
@@ -99,28 +98,6 @@ class Character extends Component {
             }
             {errorMessage}
           </Grid>
-          {
-            !error ?
-            filmMap.map(film => {
-            if (lastElements.includes(film.id)) {
-              return (
-                <Grid item xs={12} sm={6} key={film.title}>
-                  <Typography color="primary">
-                    {film.title}
-                  </Typography>
-                  <Link to="/movie">
-                    <Avatar
-                      onClick={() => this.props.fetchMovies(film.id)}
-                      className={classes.filmAvatar}
-                      src={film.image}
-                      alt={film.title}
-                    />
-                  </Link>
-                </Grid>
-              )
-            }})
-            : null
-          }
         </Grid>
       </Fade>
     );
@@ -137,7 +114,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCharacters: url => dispatch(fetchCharacters(url)),
-    fetchMovies: id => dispatch(fetchMovies(id)),
   }
 }
 

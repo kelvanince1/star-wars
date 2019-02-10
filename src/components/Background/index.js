@@ -1,16 +1,24 @@
 import React from 'react';
 
+import { Grid } from '@material-ui/core';
+import { ArrowDropDownCircle } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import Rotation from './Rotation';
 
-const styles = () => ({
+const styles = theme => ({
+  innerText: {
+    color: '#FFF',
+    fontFamily: 'Kalam',
+    fontSize: theme.spacing.unit * 6,
+    fontWeight: 900,
+  },
   nameContainer: {
     position: 'absolute',
     top: '50%',
     left: '50%',
     width: '400px',
-    height: '160px',
+    height: '295px',
     transform: 'translate(-50%, -50%)',
     border: '2px solid white',
   },
@@ -26,11 +34,19 @@ const Background = props => {
       <Rotation
         character={character}
       />
-      <div className={classes.nameContainer}>
-        <div>
+      <Grid className={classes.nameContainer}>
+        <Grid item className={classes.innerText}>
           {character.name}
-        </div>
-      </div>
+        </Grid>
+        <Grid item className={classes.innerText}>
+          Check out their films below
+        </Grid>
+        <Grid item className={classes.innerText}>
+          <ArrowDropDownCircle
+            size="large"
+          />
+        </Grid>
+      </Grid>
     </div>
   )
 }

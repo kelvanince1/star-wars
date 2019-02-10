@@ -61,13 +61,13 @@ class Navbar extends Component {
         className={classes.bar}
       >
         <Toolbar>
-          <div>Star Wars</div>
           <IconButton
             color={headerTrans ? 'primary' : 'secondary'}
             onClick={() => this.toggleDrawer(true)}
           >
             <Menu />
           </IconButton>
+          <div>Star Wars</div>
           <SideDrawer
             open={open}
             onClose={val => this.toggleDrawer(val)}
