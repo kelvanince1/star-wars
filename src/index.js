@@ -7,14 +7,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Characters from './components/Characters';
 import Character from './components/Character';
-import Movie from './components/Movie';
 
 ReactDOM.render(
   <App>
     <BrowserRouter>
       <Switch>
         <Route path="/character" exact render={(props) => <Character {...props} />} />
-        <Route path="/movie" component={Movie} />
         <Route path="/" exact component={Characters} />
         <Redirect to="/" />
       </Switch>

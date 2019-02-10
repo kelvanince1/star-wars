@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { Avatar, Grid, Typography } from '@material-ui/core';
-import { ArrowRight, ArrowLeft,InfoOutlined, InfoRounded } from '@material-ui/icons';
+import { ArrowRight, InfoOutlined } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import { fetchMovies } from '../../store/actions';
@@ -36,11 +37,21 @@ class Details extends Component {
   }
 
   render() {
-    const { character, classes, error, characterFilms, films } = this.props;
+    const { classes, films } = this.props;
 
     return (
       <Grid>
         <Grid item className={classes.cental}>
+          <Grid item xs={12}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Typography
+                className={classes.linkText}
+                color="primary"
+              >
+                Click here to select another character
+              </Typography>
+            </Link>
+          </Grid>
           <Grid item className={classes.outerWrapper}>
             <Grid item className={classes.element}>
               <Grid item className={classes.elementChild}>
@@ -70,36 +81,32 @@ class Details extends Component {
                 </Grid>
               </Grid>
               <Typography
-                className={classes.innerText}
+                className={classes.openingCrawl}
                 color="primary"
               >
                   {films.opening_crawl}
               </Typography>
             </Grid>
             <Grid item className={classes.element}>
-              <Grid item className={classes.squareElement}></Grid>
-              <Grid item className={classes.iconElement}>
-                <InfoRounded />
-              </Grid>
-                {filmMap.map(film => {
-                  if (films.title === film.title) {
-                    return (
-                      <Avatar
-                        key={films.title}
-                        className={classes.filmAvatar}
-                        src={film.image}
-                        alt={films.title}
-                      />
-                    )
-                  }
-                })}
-                <Typography
-                  color="primary"
-                  onClick={() => this.handleNext()}
-                  className={classes.helperText}
-                >
-                  NEXT FILM <ArrowRight />
-                </Typography>
+              {filmMap.map(film => {
+                if (films.title === film.title) {
+                  return (
+                    <Avatar
+                      key={films.title}
+                      className={classes.filmAvatar}
+                      src={film.image}
+                      alt={films.title}
+                    />
+                  )
+                }
+              })}
+              <Typography
+                color="primary"
+                onClick={() => this.handleNext()}
+                className={classes.nextButtonText}
+              >
+                NEXT FILM <ArrowRight />
+              </Typography>
             </Grid>
           </Grid>
         </Grid>

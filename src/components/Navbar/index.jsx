@@ -32,6 +32,10 @@ class Navbar extends Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleUnScroll);
+  }
+
   handleScroll = () => {
     if (window.scrollY > 0) {
       this.setState({
@@ -42,6 +46,12 @@ class Navbar extends Component {
         headerTrans: false
       })
     }
+  }
+
+  handleUnScroll = () => {
+    this.setState({
+      headerTrans: false
+    });
   }
 
   toggleDrawer = val => {

@@ -5,7 +5,7 @@ export const styles = theme => ({
   },
   outerWrapper: {
     display: 'flex',
-    padding: '170px 0px',
+    padding: '100px 0px',
   },
   element: {
     width: '50%',
@@ -30,7 +30,7 @@ export const styles = theme => ({
     height: 450,
     width: 350,
   },
-  helperText: {
+  nextButtonText: {
     cursor: 'pointer',
     fontFamily: 'Kalam',
     fontSize: theme.spacing.unit * 4,
@@ -47,6 +47,18 @@ export const styles = theme => ({
     left: '124px',
   },
   innerText: {
+    fontFamily: 'Abril Fatface',
+    fontSize: theme.spacing.unit * 4,
+    margin: '90px 0px 20px 0px',
+    borderBottom: '1px solid #5d5d5d',
+    paddingBottom: theme.spacing.unit,
+  },
+  linkText: {
+    fontFamily: 'Abril Fatface',
+    fontSize: theme.spacing.unit * 2,
+    paddingTop: theme.spacing.unit * 2,
+  },
+  openingCrawl: {
     fontFamily: 'Kalam',
     fontSize: theme.spacing.unit * 4,
     margin: '90px 0px 20px 0px',

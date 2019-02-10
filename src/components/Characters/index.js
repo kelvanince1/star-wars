@@ -26,6 +26,7 @@ const styles = theme => ({
 });
 
 const Characters = props => {
+  window.scrollTo(0,0);
   const { classes } = props;
   const characters = starWarsData.characters;
 
