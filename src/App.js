@@ -1,22 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
+import Characters from './components/Characters';
+import Character from './components/Character';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import reducer from './store/reducers';
-
-const rootReducer = combineReducers({
-  reducer: reducer,
-});
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
 
 const styles = () => ({
   container: {
@@ -41,18 +31,26 @@ const theme = createMuiTheme({
   spacing: 8,
 });
 
+let routes = (
+  <Switch>
+    <Route path="/character" exact render={(props) => <Character {...props} />} />
+    <Route path="/" exact component={Characters} />
+    <Redirect to="/" />
+  </Switch>
+);
+
 const App = (props) => {
   const { classes } = props;
   return (
-    <Provider store={store}>
+    <Route>
       <MuiThemeProvider theme={theme}>
         <Navbar />
         <div className={classes.container}>
-          {props.children}
+          {routes}
         </div>
         <Footer />
       </MuiThemeProvider>
-    </Provider>
+    </Route>
   )
 }
 

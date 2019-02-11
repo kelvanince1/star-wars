@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import {
   AppBar,
@@ -20,6 +20,10 @@ const styles = theme => ({
   menuButton: {
     marginRight: theme.spacing.unit * 2.5,
   },
+  navTitle: {
+    fontFamily: 'Staatliches',
+    fontSize: theme.spacing.unit * 4,
+  }
 });
 
 class Navbar extends Component {
@@ -77,7 +81,14 @@ class Navbar extends Component {
           >
             <Menu />
           </IconButton>
-          <div>Star Wars</div>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <IconButton
+              color={headerTrans ? 'primary' : 'secondary'}
+              className={classes.navTitle}
+            >
+              Star Wars
+            </IconButton>
+          </Link>
           <SideDrawer
             open={open}
             onClose={val => this.toggleDrawer(val)}
@@ -87,9 +98,5 @@ class Navbar extends Component {
     );
   }
 }
-
-Navbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default (withStyles(styles)(Navbar));

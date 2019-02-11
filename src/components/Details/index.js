@@ -7,7 +7,7 @@ import { ArrowRight, InfoOutlined, PersonOutlineRounded } from '@material-ui/ico
 import { withStyles } from '@material-ui/core/styles';
 
 import { fetchMovies } from '../../store/actions';
-import { filmMap } from '../Character/filmMap';
+import { filmMap } from './filmMap';
 import { styles } from './style';
 import { formatDate } from '../../helperFunctions/dateFormatter';
 
@@ -50,7 +50,7 @@ class Details extends Component {
               >
                 Click here to select another character
                 <PersonOutlineRounded
-                  style={{ verticalAlign: 'bottom' }}
+                  style={{ verticalAlign: 'middle' }}
                 />
               </Typography>
             </Link>
@@ -88,13 +88,6 @@ class Details extends Component {
                   }
                 </Grid>
               </Grid>
-              <Typography
-                color="primary"
-                onClick={() => this.handleNext()}
-                className={classes.nextButtonText}
-              >
-                NEXT FILM <ArrowRight />
-              </Typography>
             </Grid>
             <Grid item xs={12} sm={6} className={classes.element}>
               {filmMap.map(film => {
@@ -110,6 +103,13 @@ class Details extends Component {
                 }
               })}
             </Grid>
+            <Typography
+              color="primary"
+              onClick={() => this.handleNext()}
+              className={classes.nextButtonText}
+            >
+              NEXT FILM <ArrowRight />
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography
