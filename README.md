@@ -4,15 +4,9 @@ Desktop screenshots:
 
 ![Desktop Characters Films](src/images/Screenshots/charactersFilmsDesktop.png?raw=true "Desktop Characters Films")
 
-![Desktop Film](src/images/Screenshots/filmDesktop.png?raw=true "Desktop Film")
-
 Mobile screenshots:
 
-![Mobile Home](src/images/Screenshots/mobileHome.png?raw=true "Mobile Home")
-
 ![Mobile Characters Films](src/images/Screenshots/charactersFilmsMobile.png?raw=true "Mobile Characters Films")
-
-![Mobile Film](src/images/Screenshots/filmMobile.png?raw=true "Mobile Film")
 
 
 Circle CI build:
