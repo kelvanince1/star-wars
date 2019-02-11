@@ -2,30 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Grid, Typography } from '@material-ui/core';
+import { StarBorderRounded } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import { starWarsData } from './characters';
 
 const styles = theme => ({
-  characterAvatar: {
-    borderRadius: 0,
-    cursor: 'pointer',
-    height: '100%',
-    width: '100%',
-    '&:hover': {
-       outline: `10px solid ${theme.palette.primary.main}`,
-       transition: 'outline 0.6s linear',
-       margin: '0.1em',
-    },
-  },
   characterName: {
     color: theme.palette.primary.main,
     fontFamily: 'Kalam',
-    padding: theme.spacing.unit * 2.5,
+    fontSize: theme.spacing.unit * 5,
+    padding: theme.spacing.unit,
+  },
+  characterTitle: {
+    color: theme.palette.primary.main,
+    fontFamily: 'Staatliches',
+    fontSize: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 6,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit,
   },
 });
 
 const Characters = props => {
+  window.scrollTo(0,0);
   const { classes } = props;
   const characters = starWarsData.characters;
 
@@ -33,7 +33,7 @@ const Characters = props => {
     <Grid container direction="column" justify="space-around" align="center" spacing={40}>
       <Grid item>
         <Typography
-          className={classes.characterName}
+          className={classes.characterTitle}
           variant="h3"
           color="primary"
         >
@@ -42,7 +42,12 @@ const Characters = props => {
       </Grid>
       {characters.map((ele, index) => {
         return (
-          <Grid item key={ele.name} xs={12} sm={6}>
+          <Grid
+            item
+            key={ele.name}
+            xs={12}sm={6}
+            className={classes.innerContainer}
+          >
             <Link
               to={{ pathname: '/character', ele }}
               style={{ textDecoration: 'none' }}
@@ -52,7 +57,7 @@ const Characters = props => {
                 variant="h6"
                 color="primary"
               >
-                {ele.name}
+                {ele.name} <StarBorderRounded />
               </Typography>
             </Link>
           </Grid>

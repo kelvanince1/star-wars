@@ -40,7 +40,6 @@ TOOLS USED:
 
 IMPROVEMENTS/NEXT STEPS:
 
-* I strongly considered using GraphQL to implement props for this app. I decided against it since we aren't mutating data at all. Let's say we were building the API as well as the front end for this app, I would want to use GraphQL instead of Redux since the API contains quite a lot of nested data which we could mutate easier with GraphQL.
 * I would automate further deployments using AWS CodeBuild and CodeCommit probably. I would have the S3 buckets contents populated upon successful builds and then, possibly, CloudFront to generate a link between the S3 contents and a Route53 hosted zone, allowing us greater DNS flexibility.
 * I would write a more comprehensive testing model. The tests I have written are straightforward.
 * On the page showing some information on the particular chosen film, I would like the text to scroll up the way it does in the intro to Star Wars films.

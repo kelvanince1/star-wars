@@ -1,16 +1,18 @@
 export const styles = theme => ({
   central: {
-    width: '900px',
+    width: '100%',
     margin: '0 auto',
   },
   outerWrapper: {
-    display: 'flex',
-    padding: '170px 0px',
+    padding: '75px 0px',
   },
   element: {
     width: '50%',
     color: '#ffffff',
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing.unit * 4,
+    },
   },
   elementChild: {
     width: '300px',
@@ -27,15 +29,11 @@ export const styles = theme => ({
   filmAvatar: {
     borderRadius: 0,
     border: '2px solid #828282',
-    height: 450,
+    height: 550,
     width: 350,
-  },
-  helperText: {
-    cursor: 'pointer',
-    fontFamily: 'Kalam',
-    fontSize: theme.spacing.unit * 4,
-    marginTop: theme.spacing.unit * 6,
-    paddingBottom: theme.spacing.unit,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing.unit * 8,
+    },
   },
   iconElement: {
     width: '50px',
@@ -47,11 +45,31 @@ export const styles = theme => ({
     left: '124px',
   },
   innerText: {
-    fontFamily: 'Kalam',
+    fontFamily: 'Abril Fatface',
     fontSize: theme.spacing.unit * 4,
     margin: '90px 0px 20px 0px',
+    paddingBottom: theme.spacing.unit * 4,
     borderBottom: '1px solid #5d5d5d',
+  },
+  linkText: {
+    fontFamily: 'Abril Fatface',
+    fontSize: theme.spacing.unit * 5,
+    paddingTop: theme.spacing.unit * 2,
+  },
+  nextButtonText: {
+    cursor: 'pointer',
+    fontFamily: 'Nanum Gothic',
+    fontSize: theme.spacing.unit * 4,
+    paddingTop: theme.spacing.unit * 5,
     paddingBottom: theme.spacing.unit,
+  },
+  openingCrawl: {
+    fontFamily: 'Nanum Gothic',
+    fontSize: theme.spacing.unit * 4,
+    borderBottom: '1px solid #5d5d5d',
+    paddingBottom: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 10,
+    paddingRight: theme.spacing.unit * 10,
   },
   squareElement: {
     width: '100px',

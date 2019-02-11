@@ -13,7 +13,12 @@ import { fetchCharacters } from '../../store/actions';
 const styles = theme => ({
   errorTitle: {
     padding: theme.spacing.unit * 4,
-    color: theme.palette.primary.main,
+    fontFamily: 'Kalam',
+  },
+  helperTitle: {
+    paddingTop: theme.spacing.unit * 4,
+    fontFamily: 'Kalam',
+    fontSize: theme.spacing.unit * 6,
   },
 });
 
@@ -33,7 +38,11 @@ class Character extends Component {
 
     if (error) {
       errorMessage = (
-        <Typography variant="h4" className={classes.errorTitle}>
+        <Typography
+          variant="h4"
+          className={classes.errorTitle}
+          color="primary"
+        >
           We cannot find the data for this character. Try another
         </Typography>
       )
@@ -67,37 +76,16 @@ class Character extends Component {
               </Grid>
             </Grid>
             :
-            null
+            <Link to="/">
+              <Typography
+                color="primary"
+                className={classes.helperTitle}
+              >
+                Click here to select your character
+              </Typography>
+            </Link>
           }
-          <Grid item xs={12}>
-            {
-              character.name && !error ?
-              <div>
-                <Typography variant="h5" color="primary">
-                  CHOOSE A FILM TO SEE SOME COOL DETAILS
-                </Typography>
-                <Link to="/">
-                  <Typography
-                    variant="subtitle2"
-                    gutterBottom
-                    color="primary"
-                  >
-                    Select a different character
-                  </Typography>
-                </Link>
-                <Typography variant="subtitle1" color="primary">
-                  {character.name}s films
-                </Typography>
-              </div>
-              :
-              <Link to="/">
-                <Typography color="primary">
-                  Select your character
-                </Typography>
-              </Link>
-            }
-            {errorMessage}
-          </Grid>
+          {errorMessage}
         </Grid>
       </Fade>
     );

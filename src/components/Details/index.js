@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { Avatar, Grid, Typography } from '@material-ui/core';
-import { ArrowRight, ArrowLeft,InfoOutlined, InfoRounded } from '@material-ui/icons';
+import { ArrowRight, InfoOutlined, PersonOutlineRounded } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import { fetchMovies } from '../../store/actions';
-import { filmMap } from '../Character/filmMap';
+import { filmMap } from './filmMap';
 import { styles } from './style';
 import { formatDate } from '../../helperFunctions/dateFormatter';
 
@@ -36,13 +37,31 @@ class Details extends Component {
   }
 
   render() {
-    const { character, classes, error, characterFilms, films } = this.props;
+    const { classes, films } = this.props;
 
     return (
       <Grid>
         <Grid item className={classes.cental}>
-          <Grid item className={classes.outerWrapper}>
-            <Grid item className={classes.element}>
+          <Grid item xs={12}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <Typography
+                className={classes.linkText}
+                color="primary"
+              >
+                Click here to select another character
+                <PersonOutlineRounded
+                  style={{ verticalAlign: 'middle' }}
+                />
+              </Typography>
+            </Link>
+          </Grid>
+          <Grid
+            container
+            justify="center"
+            align="center"
+            className={classes.outerWrapper}
+          >
+            <Grid item xs={12} sm={6} className={classes.element}>
               <Grid item className={classes.elementChild}>
                 <Grid item className={classes.elementInner}>
                   <Grid item className={classes.squareElement}></Grid>
@@ -69,38 +88,36 @@ class Details extends Component {
                   }
                 </Grid>
               </Grid>
-              <Typography
-                className={classes.innerText}
-                color="primary"
-              >
-                  {films.opening_crawl}
-              </Typography>
             </Grid>
-            <Grid item className={classes.element}>
-              <Grid item className={classes.squareElement}></Grid>
-              <Grid item className={classes.iconElement}>
-                <InfoRounded />
-              </Grid>
-                {filmMap.map(film => {
-                  if (films.title === film.title) {
-                    return (
-                      <Avatar
-                        key={films.title}
-                        className={classes.filmAvatar}
-                        src={film.image}
-                        alt={films.title}
-                      />
-                    )
-                  }
-                })}
-                <Typography
-                  color="primary"
-                  onClick={() => this.handleNext()}
-                  className={classes.helperText}
-                >
-                  NEXT FILM <ArrowRight />
-                </Typography>
+            <Grid item xs={12} sm={6} className={classes.element}>
+              {filmMap.map(film => {
+                if (films.title === film.title) {
+                  return (
+                    <Avatar
+                      key={films.title}
+                      className={classes.filmAvatar}
+                      src={film.image}
+                      alt={films.title}
+                    />
+                  )
+                }
+              })}
             </Grid>
+            <Typography
+              color="primary"
+              onClick={() => this.handleNext()}
+              className={classes.nextButtonText}
+            >
+              NEXT FILM <ArrowRight />
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              className={classes.openingCrawl}
+              color="primary"
+            >
+                {films.opening_crawl}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>

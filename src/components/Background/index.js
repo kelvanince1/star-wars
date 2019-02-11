@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Grid } from '@material-ui/core';
-import { ArrowDropDownCircle } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import Rotation from './Rotation';
@@ -9,9 +8,9 @@ import Rotation from './Rotation';
 const styles = theme => ({
   innerText: {
     color: '#FFF',
-    fontFamily: 'Kalam',
+    fontFamily: 'Abril Fatface',
     fontSize: theme.spacing.unit * 6,
-    fontWeight: 900,
+    paddingTop: theme.spacing.unit * 4,
   },
   nameContainer: {
     position: 'absolute',
@@ -40,11 +39,6 @@ const Background = props => {
         </Grid>
         <Grid item className={classes.innerText}>
           Check out their films below
-        </Grid>
-        <Grid item className={classes.innerText}>
-          <ArrowDropDownCircle
-            size="large"
-          />
         </Grid>
       </Grid>
     </div>
